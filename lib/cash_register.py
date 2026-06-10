@@ -35,3 +35,12 @@ class CashRegister:
             print(f"After the discount, the total comes to ${self.total}.")
         else:
             print("There is no discount to apply.")
+
+    def void_last_transaction(self):
+        if self.previous_transactions:
+            last_transaction = self.previous_transactions.pop()
+            self.total -= last_transaction["price"] * last_transaction["quantity"]
+            for _ in range(last_transaction["quantity"]):
+                self.items.remove(last_transaction["item"])
+        else:
+            print("There is no transaction to void.")
